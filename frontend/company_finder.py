@@ -1,7 +1,7 @@
 import streamlit as st
 
 from backend.services.company_search import search_companies
-from backend.services.exporter import export_to_excel
+from backend.exporters.exporter import export_to_excel
 
 
 def show_company_finder():

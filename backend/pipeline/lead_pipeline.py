@@ -1,35 +1,39 @@
-import pandas as pd
+from backend.scrapers.web_search import search_company_websites
+from backend.scrapers.website_scraper import find_contact_page
+from backend.services.email_extractor import extract_emails
 
-from backend.models.company import Company
 
+def generate_leads(industry: str, location: str, limit: int = 10):
+    """
+    Complete lead generation pipeline.
+    """
 
-class LeadPipeline:
+    results = search_company_websites(industry, location, limit)
 
-    def __init__(self):
-        self.companies = []
+    leads = []
 
-    def add(self, company: Company):
-        self.companies.append(company)
+    for company in results:
 
-    def to_dataframe(self):
+        website = company.get("Website", "")
 
-        rows = []
+        if not website:
+            continue
 
-        for company in self.companies:
-            rows.append(
-                {
-                    "Company": company.company,
-                    "Location": company.location,
-                    "Website": company.website,
-                    "Email": company.email,
-                    "Phone": company.phone,
-                    "Source": company.source,
-                }
-            )
+        print(f"Processing: {website}")
 
-        df = pd.DataFrame(rows)
+        contact_page = find_contact_page(website)
 
-        if not df.empty:
-            df = df.drop_duplicates(subset=["Company", "Website"])
+        target = contact_page if contact_page else website
 
-        return df
+        emails = extract_emails(target)
+
+        leads.append(
+            {
+                "Company": company.get("Company"),
+                "Website": website,
+                "Contact Page": contact_page,
+                "Emails": ", ".join(emails),
+            }
+        )
+
+    return leads
