@@ -259,3 +259,365 @@ LeadPilot AI will become a complete AI-powered B2B lead generation platform capa
 
 Primary objective:
 Generate real freelance income by automating lead generation and business research tasks.
+
+
+# Sprint 4 - Architecture Upgrade
+
+## Date
+29 June 2026
+
+## Completed
+
+### UI
+- Dashboard completed
+- Sidebar completed
+- Header completed
+- Company Finder UI completed
+
+### Backend
+- Service architecture created
+- Company model introduced
+- Lead pipeline introduced
+- Excel export completed
+- Session state implemented
+
+### Improvements
+- Switched from deprecated `duckduckgo-search` to `ddgs`
+- Started building production-grade search engine
+- Preparing multi-source lead generation architecture
+
+## Current Folder Structure
+
+backend/
+├── models/
+├── pipeline/
+├── services/
+
+frontend/
+├── components/
+├── styles/
+
+exports/
+docs/
+
+## Current Goal
+
+Build a production-ready lead generation engine capable of:
+
+Industry
+    ↓
+Company Search
+    ↓
+Website Discovery
+    ↓
+Email Extraction
+    ↓
+Excel Export
+
+## Future Modules
+
+- Google Maps
+- DDGS Search
+- Website Scraper
+- Email Extractor
+- AI Company Research
+- PDF Report Generator
+
+## Milestone
+
+LeadPilot AI is transitioning from a UI prototype into a real automation platform.
+
+# Sprint 4 Progress Update
+
+## Major Milestone
+
+LeadPilot AI successfully performed its first real internet search using DDGS.
+
+### Verified Output
+
+* Real company names returned
+* Real company websites discovered
+* Search engine architecture validated
+
+### Completed Modules
+
+* Dashboard
+* Company Finder UI
+* Excel Export
+* Lead Pipeline
+* DDGS Web Search
+
+### Next Module
+
+Email Extraction
+
+Workflow:
+
+Industry + Location
+
+↓
+
+DDGS Search
+
+↓
+
+Website
+
+↓
+
+Email Extraction
+
+↓
+
+Excel Export
+
+## Future Improvements
+
+* AI company summaries
+* Phone number extraction
+* Contact page detection
+* Multi-source search
+* Lead quality scoring
+
+## Project Status
+
+LeadPilot AI has moved beyond a prototype and is now processing real-world business data. The next milestone is extracting verified contact information from company websites to create client-ready lead lists.
+
+
+# Sprint 4 Update
+
+## Completed
+
+* DDGS integration completed
+* Real company website discovery working
+* Basic email extraction implemented
+* Began website crawling module
+
+## Observation
+
+Many companies do not publish email addresses on their homepage.
+
+LeadPilot AI will therefore adopt a two-stage crawling strategy:
+
+Homepage
+↓
+
+Locate Contact Page
+
+↓
+
+Extract Emails
+
+This significantly improves lead quality and aligns with how professional lead generation tools operate.
+
+## Next Tasks
+
+* Contact page detection
+* Email extraction from contact page
+* Website validation
+* Integrate with Company Finder UI
+
+
+# Sprint 5 - Browser Automation Upgrade
+
+## Decision
+
+The project is migrating from HTTP-only scraping (`requests`) to browser automation using Playwright.
+
+## Reason
+
+Modern company websites increasingly rely on JavaScript frameworks (React, Vue, Angular) that do not expose complete page content to simple HTTP requests.
+
+Using Playwright provides:
+
+* JavaScript rendering
+* Dynamic content support
+* Better contact page discovery
+* Higher email extraction success rate
+* More reliable data collection
+
+## Expected Benefits
+
+* Higher lead quality
+* Better compatibility with modern websites
+* Stronger foundation for future AI automation features
+
+## Current Status
+
+Completed:
+
+* DDGS search
+* Website discovery
+* Excel export
+* Lead pipeline
+
+In Progress:
+
+* Browser-based website crawler
+* Email extraction engine
+
+Goal:
+Produce client-ready lead lists with significantly higher success rates.
+
+# Sprint 5 Milestone
+
+## Browser Automation
+
+Playwright and Chromium have been successfully installed and verified.
+
+Test Result:
+
+* Browser launched successfully.
+* Navigation test passed.
+* Page title extraction confirmed.
+
+This establishes the foundation for browser-based automation.
+
+## Strategic Decision
+
+Before implementing additional scraping features, the project will transition to a finalized architecture.
+
+Objectives:
+
+* Stable folder organization
+* Clear module responsibilities
+* Production-grade coding standards
+* Easier testing and maintenance
+* Faster feature development
+
+## Current Status
+
+Working Components:
+
+* Streamlit UI
+* Company Finder
+* DDGS Search
+* Excel Export
+* Lead Pipeline
+* Browser Automation (Playwright)
+
+Next Objective:
+Refactor into a scalable architecture and build the first complete lead generation pipeline.
+
+
+# Sprint 5 - Architecture Review
+
+## Repository Review
+
+The project structure has been reviewed and approved.
+
+The existing layout is clean and provides a strong foundation for future development.
+
+## Architecture Decision
+
+Backend responsibilities will be separated into:
+
+- Services (business logic)
+- Scrapers (data collection)
+- Models (data structures)
+- Pipeline (data processing)
+- Exporters (Excel/PDF)
+- AI (LLM integrations)
+- Utils (shared helpers)
+
+This separation improves maintainability and scalability.
+
+## Documentation
+
+The project documentation now consists of:
+
+- PROJECT_BIBLE.md — Long-term vision and milestones
+- DEVLOG.md — Daily progress and technical decisions
+- ROADMAP.md — Planned development phases
+- ARCHITECTURE.md — Folder structure and coding standards
+- MASTER_PLAN.md — Complete feature roadmap
+
+## Goal
+
+Build a production-ready AI Business Automation Platform suitable for:
+- Freelancing
+- Portfolio presentation
+- Job applications
+- Future SaaS expansion
+
+# Sprint 6 - Backend Modularization
+
+## Objective
+
+Separate backend responsibilities into dedicated modules following professional software architecture.
+
+### Scrapers
+
+Responsible for collecting information from external sources.
+
+### Services
+
+Responsible for business logic and data processing.
+
+### Exporters
+
+Responsible for exporting data into user-friendly formats.
+
+## Benefits
+
+- Better maintainability.
+- Easier testing.
+- Cleaner codebase.
+- Simpler future feature development.
+
+This establishes the foundation for scalable development of LeadPilot AI.
+# Sprint 6 Planning
+
+## Current Progress
+
+### Completed
+- Modular backend architecture
+- DDGS company search
+- Contact page detection
+- Browser automation with Playwright
+- Streamlit dashboard
+- Excel export
+- Documentation structure
+
+### Next Sprint
+
+Develop the Lead Pipeline.
+
+Pipeline Flow:
+
+User Input
+↓
+
+Company Search
+
+↓
+
+Website Discovery
+
+↓
+
+Browser Automation
+
+↓
+
+Email Extraction
+
+↓
+
+Phone Extraction
+
+↓
+
+Company Data Model
+
+↓
+
+Excel Export
+
+↓
+
+AI Company Summary
+
+## Objective
+
+Transition from independent modules into one complete end-to-end lead generation workflow capable of generating client-ready lead lists.
