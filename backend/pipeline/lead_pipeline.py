@@ -1,38 +1,49 @@
 from backend.scrapers.web_search import search_company_websites
-from backend.scrapers.website_scraper import find_contact_page
+from backend.scrapers.site_crawler import crawl_site
 from backend.services.email_extractor import extract_emails
+from backend.services.website_filter import is_valid_company_website
 
 
 def generate_leads(industry: str, location: str, limit: int = 10):
-    """
-    Complete lead generation pipeline.
-    """
 
-    results = search_company_websites(industry, location, limit)
+    companies = search_company_websites(industry, location, limit)
 
     leads = []
 
-    for company in results:
+    for company in companies:
 
         website = company.get("Website", "")
+        title = company.get("Company", "")
 
         if not website:
             continue
 
-        print(f"Processing: {website}")
+        if not is_valid_company_website(website, title):
+            print(f"Skipped: {website}")
+            continue
 
-        contact_page = find_contact_page(website)
+        print(f"\nProcessing: {website}")
 
-        target = contact_page if contact_page else website
+        pages = crawl_site(website)
 
-        emails = extract_emails(target)
+        all_emails = set()
+
+        for page in pages:
+
+            print(f"   Scanning: {page}")
+
+            try:
+                emails = extract_emails(page)
+                all_emails.update(emails)
+            except Exception:
+                continue
 
         leads.append(
             {
-                "Company": company.get("Company"),
+                "Company": title,
                 "Website": website,
-                "Contact Page": contact_page,
-                "Emails": ", ".join(emails),
+                "Pages Crawled": len(pages),
+                "Emails": ", ".join(sorted(all_emails)),
             }
         )
 

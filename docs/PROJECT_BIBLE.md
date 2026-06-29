@@ -715,3 +715,106 @@ Output:
 - AI company summaries
 - Lead scoring
 - Streamlit integration
+# Development Workflow
+
+To maintain code quality and repository history, every sprint follows the same lifecycle:
+
+1. Implement a feature.
+2. Test all affected modules.
+3. Update documentation.
+4. Commit with a descriptive message.
+5. Push to GitHub.
+
+This ensures every commit represents a stable milestone and allows easy rollback if required.
+
+# Sprint 8 - Smart Crawling
+
+## Objective
+
+Increase lead extraction quality by crawling multiple high-value pages instead of relying on a single contact page.
+
+## New Component
+
+site_crawler.py
+
+Responsibilities:
+- Discover internal links
+- Prioritize business-relevant pages
+- Return ranked URLs for downstream extraction
+
+## Architecture Principle
+
+Each backend package has a single responsibility:
+
+- Scrapers: Collect data
+- Services: Process data
+- Pipeline: Orchestrate workflow
+- AI: Generate insights
+- Exporters: Save results
+
+This separation improves scalability and maintainability.
+
+# Sprint 8
+
+## Smart Website Crawling
+
+LeadPilot now crawls multiple high-value pages instead of relying on a single contact page.
+
+Pipeline:
+
+Website
+
+↓
+
+Homepage
+
+↓
+
+Internal Link Discovery
+
+↓
+
+Priority Ranking
+
+↓
+
+Multi-page Email Extraction
+
+Benefits:
+
+- Higher email discovery rate
+- Better data quality
+- Reduced dependence on dedicated contact pages
+
+Future improvements:
+
+- Phone extraction
+- Website quality filtering
+- AI summaries
+- Lead scoring
+# Sprint 8.1 - Crawler Optimization
+
+## Improvements
+
+The crawler now ignores non-HTML resources.
+
+Ignored file types:
+- PDF
+- Images
+- Office documents
+- Archives
+- Media files
+
+Ignored external platforms:
+- Facebook
+- Instagram
+- LinkedIn
+- YouTube
+- Twitter
+
+## Benefits
+
+- Faster crawling
+- Better resource usage
+- Higher chance of discovering contact information
+- Cleaner lead extraction pipeline
