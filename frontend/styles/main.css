@@ -1,0 +1,35 @@
+/* ==========================================
+   LeadPilot AI - Main Theme
+   Version: 0.2.0
+========================================== */
+
+/* Main App */
+.stApp {
+    background-color: #0f172a;
+}
+
+/* Metric Cards */
+div[data-testid="stMetric"] {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 14px;
+    padding: 18px;
+}
+
+/* Buttons */
+.stButton > button {
+    width: 100%;
+    border-radius: 10px;
+    height: 48px;
+    font-weight: 600;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background-color: #111827;
+}
+
+/* Horizontal Divider */
+hr {
+    border-color: #334155;
+}
