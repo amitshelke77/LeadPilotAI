@@ -1,23 +1,25 @@
 import pandas as pd
 
+from backend.services.maps_search import search_places
+
 
 def search_companies(industry, location, max_results):
-    """
-    Temporary dummy data.
-    Next sprint we'll replace this with real Google/Maps search.
-    """
 
-    data = []
+    companies = search_places(
+        industry,
+        location,
+        max_results,
+    )
 
-    for i in range(1, max_results + 1):
-        data.append(
-            {
-                "Company": f"{industry} Company {i}",
-                "Location": location,
-                "Website": "",
-                "Email": "",
-                "Phone": "",
-            }
+    if not companies:
+        return pd.DataFrame(
+            columns=[
+                "Company",
+                "Location",
+                "Website",
+                "Email",
+                "Phone",
+            ]
         )
 
-    return pd.DataFrame(data)
+    return pd.DataFrame(companies)

@@ -8,3 +8,4 @@ requests
 playwright
 python-dotenv
 lxml
+duckduckgo-search
