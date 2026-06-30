@@ -406,3 +406,38 @@ Completed:
 - Integrated phone normalization into extraction.
 - Removed duplicate phone formats before returning results.
 - Phone extractor now conforms to the universal extractor contract.
+## Sprint 25 - Email Extractor Standardization
+
+Completed:
+- Refactored email extractor to return Evidence objects.
+- Integrated email normalization into extraction.
+- Eliminated duplicate emails after normalization.
+- Email extractor now conforms to the universal extractor contract.
+## Sprint 26 — Enterprise Email Extraction Engine
+
+Started development of the next-generation email extraction system.
+
+Planned architecture:
+
+- HTML email extractor
+- mailto extractor
+- JSON-LD email extractor
+- Footer email extractor
+- Contact-page email extractor
+- Central email engine
+
+Goal:
+Increase email extraction accuracy and make the system modular and extensible.
+## Sprint 26 — Enterprise Email Engine Architecture
+
+Completed:
+- Created dedicated email extraction module.
+- Separated engine, extractors, and utilities into independent packages.
+- Established scalable architecture for future phone, address, company, and social extraction engines.
+## Sprint 26 — Shared HTML Downloader
+
+Completed:
+- Built centralized HTML downloader.
+- Standardized User-Agent headers.
+- Added HTTP error handling.
+- Prepared foundation for retries, caching, proxies and Playwright fallback.
