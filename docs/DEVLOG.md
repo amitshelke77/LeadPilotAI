@@ -348,3 +348,31 @@ Future extractors will return raw data only.
 A dedicated enrichment layer will merge, normalize and prioritize data before producing the final Business Profile.
 
 This separates extraction from decision-making and keeps the system modular.
+
+# Sprint 18
+
+## Evidence Model
+
+Introduced the Evidence dataclass as the standard output format for all extractors.
+
+Fields:
+- field
+- value
+- source
+- confidence
+
+This standardization enables reliable merging, confidence scoring, and traceability across multiple extraction sources.
+
+# Sprint 19 Review
+
+## Merge Engine Validation
+
+Successfully validated Merge Engine v1 using multiple Evidence objects.
+
+Verified:
+- Field grouping
+- Highest-confidence selection
+- Source provenance
+- Evidence counting
+
+The enrichment pipeline is now capable of consolidating information from multiple independent extractors into a single Business Profile.

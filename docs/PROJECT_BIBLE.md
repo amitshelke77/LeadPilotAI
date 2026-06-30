@@ -1179,3 +1179,34 @@ Lead Output
 Extractors never overwrite fields directly. They only collect evidence.
 
 The enrichment layer determines the final value for each field based on source priority, normalization, and confidence.
+
+## Evidence-Based Enrichment
+
+All extractors return Evidence objects instead of modifying the Business Profile directly.
+
+The Merge Engine combines evidence from multiple sources, resolves conflicts, normalizes values, and produces a single enriched Business Profile.
+
+Benefits:
+- Modular extractors
+- Source traceability
+- Confidence scoring
+- Easier testing
+- Easier future expansion
+
+## Architecture Milestone
+
+The core enrichment architecture is now operational.
+
+Current pipeline:
+
+Search
+→ Website Filtering
+→ Official Website Resolution
+→ Crawling
+→ Data Extraction
+→ Normalization
+→ Evidence Generation
+→ Merge Engine
+→ Business Profile
+
+Future extractors can integrate by producing Evidence objects without modifying downstream components.
