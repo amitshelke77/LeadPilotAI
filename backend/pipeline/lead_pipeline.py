@@ -1,8 +1,7 @@
-from backend.scrapers.web_search import search_company_websites
-from backend.scrapers.site_crawler import crawl_site
-from backend.services.email_extractor import extract_emails
+from backend.scrapers.search.web_search import search_company_websites
+from backend.scrapers.crawlers.site_crawler import crawl_site
+from backend.scrapers.extractors.email_extractor import extract_emails
 from backend.services.website_filter import is_valid_company_website
-
 
 def generate_leads(industry: str, location: str, limit: int = 10):
 

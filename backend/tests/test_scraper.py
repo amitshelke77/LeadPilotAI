@@ -1,4 +1,4 @@
-from backend.scrapers.website_scraper import find_contact_page
+from backend.scrapers.crawlers.website_scraper import find_contact_page
 
 url = "https://www.bharatplastic.org"
 

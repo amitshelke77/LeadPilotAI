@@ -1,5 +1,5 @@
-from backend.scrapers.website_scraper import find_contact_page
-from backend.services.email_extractor import extract_emails
+from backend.scrapers.crawlers.website_scraper import find_contact_page
+from backend.scrapers.extractors.email_extractor import extract_emails
 
 url = "https://www.bharatplastic.org"
 

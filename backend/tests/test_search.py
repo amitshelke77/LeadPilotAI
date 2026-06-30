@@ -1,4 +1,4 @@
-from backend.scrapers.web_search import search_company_websites
+from backend.scrapers.search.web_search import search_company_websites
 
 results = search_company_websites(
     "Plastic Manufacturers",

@@ -818,3 +818,24 @@ Ignored external platforms:
 - Better resource usage
 - Higher chance of discovering contact information
 - Cleaner lead extraction pipeline
+
+# Architecture Revision - v2
+
+## Scraper Layer Refactoring
+
+The scraping subsystem has been reorganized into three responsibilities:
+
+- search/
+  Responsible for discovering company websites.
+
+- crawlers/
+  Responsible for navigating websites and collecting pages.
+
+- extractors/
+  Responsible for extracting structured data such as emails and phone numbers.
+
+This improves maintainability and makes it easier to add new providers without affecting existing code.
+
+## Testing
+
+All backend test scripts will gradually move into a dedicated `backend/tests/` package to separate production code from development utilities.
