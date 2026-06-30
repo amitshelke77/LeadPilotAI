@@ -398,3 +398,11 @@ Completed:
 
 Status:
 Extraction orchestration complete. Standardization phase begins next.
+
+## Sprint 25 — Phone Extractor Standardization
+
+Completed:
+- Refactored phone extractor to return Evidence objects.
+- Integrated phone normalization into extraction.
+- Removed duplicate phone formats before returning results.
+- Phone extractor now conforms to the universal extractor contract.

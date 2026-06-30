@@ -1,6 +1,9 @@
 import re
 import requests
 
+from backend.enrichers.evidence import Evidence
+from backend.normalizers.phone_normalizer import normalize_phone
+
 
 PHONE_REGEXES = [
     r"\+91[\s\-]?\d{10}",
@@ -12,8 +15,14 @@ PHONE_REGEXES = [
 
 
 def extract_phones(url: str):
+    """
+    Extract phone numbers from a webpage.
 
-    phones = set()
+    Returns:
+        list[Evidence]
+    """
+
+    evidence = []
 
     try:
 
@@ -27,18 +36,31 @@ def extract_phones(url: str):
 
         html = response.text
 
+        phones = set()
+
         for regex in PHONE_REGEXES:
 
             matches = re.findall(regex, html)
 
-            for phone in matches:
+            phones.update(matches)
 
-                phone = phone.strip()
+        for phone in phones:
 
-                if len(phone) >= 10:
-                    phones.add(phone)
+            normalized = normalize_phone(phone)
+
+            if not normalized:
+                continue
+
+            evidence.append(
+                Evidence(
+                    field="phone",
+                    value=normalized,
+                    source="html",
+                    confidence=0.80,
+                )
+            )
 
     except Exception:
         pass
 
-    return sorted(phones)
+    return evidence
