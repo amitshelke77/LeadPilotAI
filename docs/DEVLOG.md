@@ -448,3 +448,32 @@ Refactor the extraction pipeline around a shared Document object.
 
 Reason:
 Avoid repeated HTML downloads and parsing while creating a reusable foundation for all future extractors and AI enrichment modules.
+
+## Sprint 27 - Core Web Document Architecture
+
+Started implementation of the shared Web Document system.
+
+Goals:
+- Download each website only once.
+- Parse HTML only once.
+- Share a single Document object across all extractors.
+- Improve performance and reduce duplicate code.
+- Create a scalable architecture for future AI enrichment modules.
+## Sprint 27 — Shared Document Object
+
+Completed:
+- Built centralized HTML downloader.
+- Added shared HTML parser.
+- Implemented reusable Document class.
+- Exposed reusable properties:
+  - URL
+  - HTML
+  - BeautifulSoup object
+  - Title
+  - Plain text
+  - Meta tags
+  - Links
+  - Script elements
+
+Result:
+Future extractors no longer need to download or parse the same webpage independently. They can operate on a single shared Document instance, reducing duplicate work and improving maintainability.

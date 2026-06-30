@@ -1,0 +1,9 @@
+from bs4 import BeautifulSoup
+
+
+def parse_html(html: str) -> BeautifulSoup:
+    """
+    Parse HTML into a BeautifulSoup object.
+    """
+
+    return BeautifulSoup(html, "html.parser")
