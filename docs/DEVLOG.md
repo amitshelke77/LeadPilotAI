@@ -207,3 +207,144 @@ Future normalization modules:
 - Company Name
 - Website
 - Address
+
+# Sprint 13
+
+## Data Quality Layer
+
+Started implementing a dedicated normalization layer.
+
+Purpose:
+
+- Remove duplicate values
+- Standardize extracted data
+- Prepare information for validation
+- Improve overall pipeline reliability
+
+Initial normalizers:
+
+- Phone
+- Email
+- Company
+- Website# Sprint 13.1
+
+## Phone Normalizer
+
+Implemented the first normalization module.
+
+Features:
+
+- Removes country codes
+- Removes leading zeros
+- Filters invalid phone numbers
+- Eliminates duplicates
+- Produces standardized 10-digit Indian mobile numbers
+
+This marks the beginning of the Data Quality Layer.
+
+# Sprint 13.2
+
+## Email & Website Normalizers
+
+Implemented canonical normalization for:
+
+- Email addresses
+- Website URLs
+
+Features:
+
+- Lowercase email normalization
+- Duplicate removal
+- URL canonicalization
+- Domain standardization
+
+These modules establish consistent data before validation and storage.
+
+# Sprint 14
+
+## Company Name Normalizer
+
+Started implementation of the company name normalization engine.
+
+Current approach:
+
+- Split titles by common separators.
+- Score candidate names.
+- Remove generic business keywords.
+- Remove trailing location names.
+
+Future improvements:
+
+- JSON-LD Organization support
+- Open Graph support
+- Logo text analysis
+- Footer copyright analysis
+- AI-assisted fallback
+
+# Sprint 14 Review
+
+## Company Name Normalizer
+
+Initial heuristic-based company name normalization achieved partial success.
+
+Results:
+
+- 3/5 benchmark cases correctly resolved.
+- Failures highlighted limitations of title-only heuristics.
+
+Decision:
+
+Shift focus toward structured-data extraction (JSON-LD) as the primary source of company identity. Heuristic normalization will remain as a fallback mechanism.
+# Sprint 15
+
+## JSON-LD Extractor
+
+Implemented the first structured-data extractor.
+
+Features:
+
+- Reads application/ld+json blocks
+- Detects Organization, Corporation and LocalBusiness schemas
+- Returns structured business metadata when available
+
+This extractor will become the highest-priority source for company identity in the enrichment pipeline.
+
+# Sprint 15 Update
+
+## JSON-LD Parser
+
+Discovered that many production websites expose multiple schema types using a list in the @type field.
+
+Improved parser to support:
+
+- Single @type values
+- Multiple @type values
+- @graph structures
+- Manufacturer schemas
+- Store schemas
+- LocalBusiness schemas
+
+This significantly increases compatibility with modern business websites.
+
+# Sprint 16 Review
+
+## Business Profile Milestone
+
+Successfully extracted a complete business profile from structured JSON-LD.
+
+Captured fields:
+
+- Company Name
+- Address
+- Phone
+- Website
+- Logo
+- Description
+
+### Architecture Decision
+
+Future extractors will return raw data only.
+
+A dedicated enrichment layer will merge, normalize and prioritize data before producing the final Business Profile.
+
+This separates extraction from decision-making and keeps the system modular.

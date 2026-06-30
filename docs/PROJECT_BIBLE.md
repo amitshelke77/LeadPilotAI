@@ -1056,3 +1056,126 @@ LeadPilot separates data processing into four stages:
 4. Storage
 
 This design minimizes duplicate logic and ensures all exported business data follows a consistent format regardless of its original representation.
+
+
+## Normalization Layer
+
+LeadPilot separates extraction from normalization.
+
+Extractors collect raw data.
+
+Normalizers standardize data into a canonical format before validation and storage.
+
+Benefits:
+
+- Cleaner exports
+- Reduced duplication
+- Easier validation
+- Better AI input quality
+
+## Canonical Data
+
+Every extracted value should be converted into a canonical representation before entering the pipeline.
+
+Example:
+
++91 9860256222
++91-9860256222
+919860256222
+
+↓
+
+9860256222
+
+Canonical data reduces duplicates and simplifies validation, storage, AI processing, and exports.
+## Canonical Website
+
+LeadPilot treats all pages of a company as one canonical website.
+
+Example:
+
+https://company.com/about
+
+https://company.com/contact
+
+https://www.company.com
+
+↓
+
+https://company.com
+
+This reduces duplicate crawls and improves performance across the pipeline.
+
+## Company Identity Resolution
+
+Company names may appear differently across web pages.
+
+LeadPilot resolves a canonical company name by combining multiple independent signals and assigning confidence scores.
+
+This enables consistent reporting and prevents duplicate company records.
+
+## Company Identity Strategy
+
+LeadPilot resolves company identity using a priority order rather than relying on a single source.
+
+Priority:
+
+1. JSON-LD Organization
+2. Open Graph Metadata
+3. Standard Metadata
+4. HTML Title
+5. Domain Analysis
+6. AI Fallback
+
+This approach improves accuracy and reduces false positives from marketing page titles.
+
+## Structured Data First
+
+Whenever structured business data (JSON-LD) is available, LeadPilot prefers it over heuristic extraction from HTML.
+
+Priority order:
+
+1. JSON-LD
+2. Open Graph
+3. Standard Meta Tags
+4. HTML Title
+5. Domain Heuristics
+6. AI Fallback
+
+This improves accuracy while reducing false positives.
+
+## JSON-LD Compatibility
+
+LeadPilot supports both simple and advanced Schema.org implementations.
+
+Supported patterns include:
+
+- Single @type values
+- Multiple @type arrays
+- Nested @graph collections
+
+This improves compatibility with modern CMS platforms and SEO plugins.
+
+## Data Enrichment Architecture
+
+LeadPilot follows a layered enrichment pipeline.
+
+Website
+    ↓
+Crawler
+    ↓
+Extractors
+    ↓
+Normalizers
+    ↓
+Merge Engine
+    ↓
+Business Profile
+    ↓
+AI Enrichment
+    ↓
+Lead Output
+
+Extractors never overwrite fields directly. They only collect evidence.
+
+The enrichment layer determines the final value for each field based on source priority, normalization, and confidence.
