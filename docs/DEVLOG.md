@@ -388,3 +388,13 @@ Completed:
 
 Status:
 Extraction framework is now modular and extensible.
+## Sprint 24 - Universal Extraction Engine
+
+Completed:
+- Implemented centralized extraction engine.
+- Engine successfully executes all registered extractors.
+- Integration testing revealed inconsistent extractor return types.
+- Next sprint will standardize every extractor to return list[Evidence].
+
+Status:
+Extraction orchestration complete. Standardization phase begins next.
