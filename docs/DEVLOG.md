@@ -376,3 +376,15 @@ Verified:
 - Evidence counting
 
 The enrichment pipeline is now capable of consolidating information from multiple independent extractors into a single Business Profile.
+
+## Sprint 23 — Extractor Registry
+
+Completed:
+- Introduced centralized extractor registry.
+- Registered Email, Phone, Metadata, JSON-LD, and Social extractors.
+- Standardized extractor architecture.
+- Fixed inconsistent imports.
+- Improved modularity for future enrichment pipeline.
+
+Status:
+Extraction framework is now modular and extensible.

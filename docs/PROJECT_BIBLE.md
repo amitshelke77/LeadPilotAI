@@ -1210,3 +1210,13 @@ Search
 → Business Profile
 
 Future extractors can integrate by producing Evidence objects without modifying downstream components.
+
+Extraction Layer
+
+- Email Extractor
+- Phone Extractor
+- Metadata Extractor
+- JSON-LD Extractor
+- Social Media Extractor
+
+All extractors are registered through a centralized registry, allowing the enrichment pipeline to execute them dynamically.
