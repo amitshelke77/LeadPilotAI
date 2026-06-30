@@ -14,6 +14,8 @@ BLOCKED_DOMAINS = {
     "sulekha.com",
     "amazon.in",
     "flipkart.com",
+    "webindia123.com",
+    "yellowpages.webindia123.com",
 }
 
 BLOCKED_KEYWORDS = {

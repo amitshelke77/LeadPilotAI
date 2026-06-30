@@ -839,3 +839,220 @@ This improves maintainability and makes it easier to add new providers without a
 ## Testing
 
 All backend test scripts will gradually move into a dedicated `backend/tests/` package to separate production code from development utilities.
+
+# Sprint 9 Complete
+
+## Refactoring
+
+Completed restructuring of the scraper subsystem.
+
+### New Layout
+
+scrapers/
+    search/
+    crawlers/
+    extractors/
+
+tests/
+
+Benefits:
+
+- Better modularity
+- Cleaner imports
+- Easier maintenance
+- Scalable architecture for future providers
+
+# Sprint 10 - Search Manager
+
+Introduced a Search Manager layer between the pipeline and search providers.
+
+Current Provider:
+- DDGS
+
+Future Providers:
+- Google Maps
+- Brave Search
+- Bing
+- Serper API
+
+Benefits:
+- Pipeline no longer depends on a specific search engine.
+- Easier expansion.
+- Centralized result deduplication.
+## Sprint 10 Progress
+
+### Search Manager
+- Introduced a Search Manager layer between the pipeline and search providers.
+- Pipeline now depends on the Search Manager instead of a specific search provider.
+
+### Website Filtering
+- Continued refining directory detection.
+- Real-world testing identified additional directory domains (e.g., WebIndia123).
+- Filtering will continue to evolve based on production test results.
+# Sprint 10.1
+
+Added Official Website Finder service.
+
+Purpose:
+
+Convert company names into official websites before crawling.
+
+Benefits:
+
+- Higher email discovery rate
+- Fewer directory pages
+- Better lead quality
+- Cleaner exports
+
+# Sprint 10.2
+
+## Dependency Migration
+
+Completed migration from the deprecated `duckduckgo_search` package to `ddgs`.
+
+Benefits:
+- Uses the actively maintained package.
+- Eliminates deprecation warnings.
+- Standardizes search functionality across the project.
+
+## Next Priority
+
+Implement Company Name Extraction to improve official website discovery and overall lead quality.
+
+# Sprint 11 Planning
+
+## Goal
+
+Improve lead quality before expanding features.
+
+### Planned Modules
+
+1. Company Name Cleaner
+2. Website Classifier
+3. Phone Extractor
+4. Address Extractor
+5. Google Maps Integration
+
+Reason:
+
+A clean and accurate lead database is more valuable than adding AI features to poor-quality data.
+
+# Current Development Phase
+
+LeadPilot AI has completed its foundational architecture.
+
+The focus has shifted from infrastructure development to lead quality.
+
+Upcoming priorities:
+
+1. Company Name Cleaner
+2. Website Classifier
+3. Phone Extraction
+4. Address Extraction
+5. Google Maps Integration
+6. AI Enrichment
+7. CRM Integration
+
+The long-term objective is to create a production-grade lead generation platform capable of discovering and enriching thousands of business leads.
+
+### Company Name Parser
+
+The project will use a parsing approach instead of a rule-based cleaner.
+
+Pipeline:
+
+Search Result Title
+        ↓
+Candidate Extraction
+        ↓
+Candidate Scoring
+        ↓
+Validation
+        ↓
+Best Company Name
+
+Reason:
+
+Real-world website titles are highly inconsistent and cannot be reliably cleaned using keyword removal alone.
+## Website Metadata Extractor
+
+LeadPilot AI will use website metadata as the primary source of truth.
+
+Priority metadata:
+
+- HTML Title
+- Open Graph tags
+- JSON-LD Organization schema
+- Meta Description
+- Contact Information
+- Logo
+- Social Media
+- Business Identifiers
+
+Search engine titles will be treated as a fallback rather than the primary source of company information.
+
+## Backend Architecture Principle
+
+LeadPilot follows a separation-of-concerns design.
+
+Modules:
+
+- Search → Find candidate websites.
+- Services → Business logic.
+- Crawlers → Retrieve web pages.
+- Extractors → Extract structured business data.
+- Pipeline → Coordinate the complete workflow.
+- AI → Generate summaries and outreach content.
+
+Each module has a single responsibility and should remain independently testable.
+
+## Metadata First Strategy
+
+LeadPilot prefers authoritative website metadata over search engine titles.
+
+Priority order:
+
+1. JSON-LD Organization
+2. Open Graph Site Name
+3. HTML Title
+4. Search Result Title
+
+This strategy minimizes incorrect company names and improves lead quality.
+## Source of Truth Hierarchy
+
+LeadPilot AI prioritizes business information using the following order:
+
+1. JSON-LD Organization Schema
+2. Open Graph Metadata
+3. HTML Metadata
+4. Contact Page Content
+5. Website Footer
+6. Search Engine Results
+
+Whenever conflicting information exists, the highest-priority available source is used.
+## Business Intelligence Extractors
+
+LeadPilot extracts structured business information through specialized modules.
+
+Current roadmap:
+
+- Metadata Extractor
+- Phone Extractor
+- Email Extractor
+- Address Extractor
+- Social Media Extractor
+- Logo Extractor
+- JSON-LD Extractor
+
+Each extractor should remain independent and reusable within the pipeline.
+
+## Data Processing Pipeline
+
+LeadPilot separates data processing into four stages:
+
+1. Extraction
+2. Normalization
+3. Validation
+4. Storage
+
+This design minimizes duplicate logic and ensures all exported business data follows a consistent format regardless of its original representation.
