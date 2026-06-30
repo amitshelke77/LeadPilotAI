@@ -441,3 +441,10 @@ Completed:
 - Standardized User-Agent headers.
 - Added HTTP error handling.
 - Prepared foundation for retries, caching, proxies and Playwright fallback.
+## Sprint 26 — Architecture Improvement
+
+Decision:
+Refactor the extraction pipeline around a shared Document object.
+
+Reason:
+Avoid repeated HTML downloads and parsing while creating a reusable foundation for all future extractors and AI enrichment modules.
